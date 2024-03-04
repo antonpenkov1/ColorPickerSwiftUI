@@ -12,17 +12,12 @@ struct ContentView: View {
     @State var greenSliderValue = Double.random(in: 0...255)
     @State var blueSliderValue = Double.random(in: 0...255)
     
-    @State private var redString = ""
-    @State private var greenString = ""
-    @State private var blueString = ""
-    
     @FocusState var isInputActive: Bool
     
     var body: some View {
         ZStack {
-            Color(.blue)
+            Color(Color(red: 0.1, green: 0.4, blue: 0.85))
                 .ignoresSafeArea()
-                .opacity(0.85)
             VStack(spacing: 40) {
                 ColorView(
                     redValue: $redSliderValue,
