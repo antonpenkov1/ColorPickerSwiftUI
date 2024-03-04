@@ -12,6 +12,12 @@ struct ContentView: View {
     @State var greenSliderValue = Double.random(in: 0...255)
     @State var blueSliderValue = Double.random(in: 0...255)
     
+    @State private var redString = ""
+    @State private var greenString = ""
+    @State private var blueString = ""
+    
+    @FocusState var isInputActive: Bool
+    
     var body: some View {
         ZStack {
             Color(.blue)
@@ -25,9 +31,19 @@ struct ContentView: View {
                 )
                 
                 VStack {
-                    ColorSliderView(colorValue: $redSliderValue, color: .red)
-                    ColorSliderView(colorValue: $greenSliderValue, color: .green)
-                    ColorSliderView(colorValue: $blueSliderValue, color: .blue)
+                    ColorSliderView(color: .red, colorValue: $redSliderValue)
+                    ColorSliderView(color: .green, colorValue: $greenSliderValue)
+                    ColorSliderView(color: .blue, colorValue: $blueSliderValue)
+                }
+                .focused($isInputActive)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        
+                        Button("Done") {
+                            isInputActive = false
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -35,6 +51,10 @@ struct ContentView: View {
             .padding()
         }
     }
+}
+
+enum ColorEdited {
+    case red, green, blue
 }
 
 #Preview {

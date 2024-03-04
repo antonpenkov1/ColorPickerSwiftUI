@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-struct ColorView: View {
-//    @State var color: Color
-    
+struct ColorView: View {    
     @Binding var redValue: Double
     @Binding var greenValue: Double
     @Binding var blueValue: Double
@@ -28,6 +26,5 @@ struct ColorView: View {
 }
 
 #Preview {
-//    ColorView(color: .constant(.red))
     ColorView(redValue: .constant(169), greenValue: .constant(136), blueValue: .constant(250))
 }

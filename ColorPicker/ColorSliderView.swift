@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ColorSliderView: View {
-    @Binding var colorValue: Double
-    
     let color: Color
     
+    @Binding var colorValue: Double
+        
     var body: some View {
         HStack {
             Text(lround(colorValue).formatted())
@@ -19,10 +19,14 @@ struct ColorSliderView: View {
                 .foregroundStyle(.white)
             Slider(value: $colorValue, in: 0...255, step: 1)
                 .tint(color)
+            TextField("0", value: $colorValue, format: .number.rounded(increment: 1))
+                .keyboardType(.numberPad)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 50)
         }
     }
 }
 
 #Preview {
-    ColorSliderView(colorValue: .constant(169), color: .red)
+    ColorSliderView(color: .red, colorValue: .constant(169))
 }
